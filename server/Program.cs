@@ -1,4 +1,6 @@
 
+using Microsoft.Extensions.FileProviders;
+
 namespace WMU.Elearning.Server
 {
     public class Program
@@ -21,7 +23,14 @@ namespace WMU.Elearning.Server
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+
+            // Serve the react app if the request is not to an API
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                       Path.Combine(builder.Environment.ContentRootPath, @"..\client"))
+            });
+            
             app.UseRouting();
 
 
