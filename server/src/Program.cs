@@ -28,9 +28,9 @@ namespace WMU.Elearning.Server
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                       Path.Combine(builder.Environment.ContentRootPath, @"..\client"))
+                       Path.Combine(builder.Environment.ContentRootPath, @"..\..\client"))
             });
-            
+
             app.UseRouting();
 
 
