@@ -2,6 +2,6 @@
 {
     public class Course : Entity
     {
-        public ICollection<Assignment> Assignments { get; set; }
+        public ICollection<Assignment>? Assignments { get; set; }
     }
 }

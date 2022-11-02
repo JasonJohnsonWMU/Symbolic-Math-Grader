@@ -24,31 +24,25 @@ namespace WMU.Elearning.Server.Controllers
 
         #region CRUD API
 
-        // GET: /api/courses
-        [HttpGet]
-        [ActionName("")]
-        public async Task<IActionResult> Get()
+        // POST: /api/courses/create
+        [HttpPost]
+        [ActionName("Create")]
+        public async Task<IActionResult> Create([Bind("ID,Name")] Course course)
         {
-            //if (id == null || _context.Courses == null)
-            //{
-            //    return NotFound();
-            //}
+            if (_context == null)
+            {
+                return BadRequest();
+            }
 
-            //Course? course = await _context.Courses.FirstOrDefaultAsync(course => course.ID == id);
-
-            //if (course == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //return Ok(course);
-            return Ok();
+            await _context.AddAsync(course);
+            await _context.SaveChangesAsync();
+            return Ok(course);
         }
 
-        // GET: /api/courses/details?id=5
+        // GET: /api/courses/getbyid?id=1
         [HttpGet]
-        [ActionName("Details")]
-        public async Task<IActionResult> Details(int? id)
+        [ActionName("GetById")]
+        public async Task<IActionResult> GetById(int? id)
         {
             if (id == null || _context.Courses == null)
             {
@@ -65,24 +59,42 @@ namespace WMU.Elearning.Server.Controllers
             return Ok(course);
         }
 
-
-        // POST: /api/courses/create
-        [HttpPost]
-        [ActionName("Create")]
-        public async Task<IActionResult> Create([Bind("ID,Name")] Course course)
+        // GET: /api/courses/getall
+        [HttpGet]
+        [ActionName("GetAll")]
+        public async Task<IActionResult> GetAll()
         {
-            // TODO: Implement this
-            throw new NotImplementedException();
+            if (_context.Courses == null)
+            {
+                return NotFound();
+            }
+
+            List<Course>? courses = await _context.Courses.ToListAsync();
+
+            if (courses == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(courses);
         }
 
 
-        // POST: /api/courses/edit?id=5
-        [HttpPost]
+        // POST: /api/courses/edit?id=1
+        [HttpPut]
         [ActionName("Edit")]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name")] Course course)
         {
-            // TODO: Implement this
-            throw new NotImplementedException();
+            Course? currentCourse = await _context.Courses.FindAsync(id);
+
+            if (currentCourse != null)
+            {
+                currentCourse.Name = course.Name;
+                currentCourse.Assignments = course.Assignments;
+                await _context.SaveChangesAsync();
+                return Ok(currentCourse);
+            }
+            return NotFound();
         }
 
 
@@ -91,8 +103,16 @@ namespace WMU.Elearning.Server.Controllers
         [ActionName("Delete")]
         public async Task<IActionResult> Delete(int id)
         {
-            // TODO: Implement this
-            throw new NotImplementedException();
+            Course? course = await _context.Courses.FindAsync(id);
+
+            if (course != null)
+            {
+                _context.Remove(course);
+                await _context.SaveChangesAsync();
+                return Ok(course);
+            }
+
+            return NotFound();
         }
         #endregion
 
