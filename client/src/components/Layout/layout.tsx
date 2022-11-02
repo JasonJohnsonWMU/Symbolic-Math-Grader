@@ -4,9 +4,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import "react-toastify/dist/ReactToastify.css";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
-import { dark } from "../Theme/theme";
+import Footer from "./Footer/Footer";
+import Header from "./Header/Header";
+import { dark } from "./Theme/theme";
 
 export interface LayoutProps {
   children: React.ReactNode;

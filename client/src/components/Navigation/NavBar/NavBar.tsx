@@ -1,3 +1,11 @@
+// Authentication
+import {
+  AuthenticatedTemplate,
+  UnauthenticatedTemplate,
+} from "@azure/msal-react";
+import { useAuthentication } from "../../Authentication/AuthenticationProvider";
+
+// UI Components
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -5,8 +13,11 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import NavBarMenu from "../AccountMenu/AccountMenu";
 
-function Header() {
+function NavBar() {
+  const { login } = useAuthentication();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -21,13 +32,22 @@ function Header() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            Title Here
+            {/* TODO: Come up with title */}
           </Typography>
-          <Button color="inherit">Login</Button>
+          <AuthenticatedTemplate>
+            <NavBarMenu />
+          </AuthenticatedTemplate>
+
+          <UnauthenticatedTemplate>
+            <Button color="inherit" variant="outlined" onClick={login}>
+              Login
+            </Button>
+          </UnauthenticatedTemplate>
         </Toolbar>
       </AppBar>
     </Box>
   );
 }
 
-export default Header;
+export default NavBar;
