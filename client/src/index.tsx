@@ -18,6 +18,7 @@ import { AuthenticationProvider } from "./components/Authentication/Authenticati
 // Pages
 import Home from "./pages/Home";
 import Account from "./pages/Account";
+import Courses from "./pages/Courses";
 
 const rootElement = document.getElementById("root") as HTMLElement;
 const root = createRoot(rootElement);
@@ -30,6 +31,7 @@ root.render(
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/courses" element={<Courses />} />
           </Routes>
         </Layout>
       </AuthenticationProvider>

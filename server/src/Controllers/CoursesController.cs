@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using WMU.Elearning.Database.Data;
 using WMU.Elearning.Database.Models;
+using WMU.Elearning.Server.Models.Courses;
 
 namespace WMU.Elearning.Server.Controllers
 {
@@ -27,12 +28,14 @@ namespace WMU.Elearning.Server.Controllers
         // POST: /api/courses/create
         [HttpPost]
         [ActionName("Create")]
-        public async Task<IActionResult> Create([Bind("ID,Name")] Course course)
+        public async Task<IActionResult> Create([FromForm] CreateCourseRequest createCourseRequest)
         {
             if (_context == null)
             {
                 return BadRequest();
             }
+
+            Course course = new Course() { Name = createCourseRequest.Name };
 
             await _context.AddAsync(course);
             await _context.SaveChangesAsync();
@@ -83,14 +86,14 @@ namespace WMU.Elearning.Server.Controllers
         // POST: /api/courses/edit?id=1
         [HttpPut]
         [ActionName("Edit")]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name")] Course course)
+        public async Task<IActionResult> Edit([FromForm] EditCourseRequest editCourseRequest)
         {
-            Course? currentCourse = await _context.Courses.FindAsync(id);
+            Course? currentCourse = await _context.Courses.FindAsync(editCourseRequest.ID);
 
             if (currentCourse != null)
             {
-                currentCourse.Name = course.Name;
-                currentCourse.Assignments = course.Assignments;
+                currentCourse.Name = editCourseRequest.Name;
+                currentCourse.Assignments = editCourseRequest.Assignments;
                 await _context.SaveChangesAsync();
                 return Ok(currentCourse);
             }
@@ -113,13 +116,6 @@ namespace WMU.Elearning.Server.Controllers
             }
 
             return NotFound();
-        }
-        #endregion
-
-        #region Helper Methods
-        private bool CourseExists(int id)
-        {
-            return _context.Courses.Any(e => e.ID == id);
         }
         #endregion
     }

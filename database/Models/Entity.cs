@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Reinforced.Typings.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace WMU.Elearning.Database.Models
 {
+    [TsInterface(IncludeNamespace = false)]
     public abstract class Entity
     {
         [Key]
