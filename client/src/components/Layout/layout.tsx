@@ -1,14 +1,22 @@
 import React from "react";
-import { ToastContainer } from "react-toastify";
-import CssBaseline from "@mui/material/CssBaseline";
-import "react-toastify/dist/ReactToastify.css";
-import ThemeProvider from "@mui/material/styles/ThemeProvider";
 
-import Footer from "./Footer/Footer";
-import Header from "./Header/Header";
+// Themeing
+import CssBaseline from "@mui/material/CssBaseline";
+import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import { dark } from "./Theme/theme";
 
-export interface LayoutProps {
+// Animations
+import { AnimatePresence } from "framer-motion";
+
+// Notifications
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+// UI Components
+import Footer from "./Footer/Footer";
+import Header from "./Header/Header";
+
+interface LayoutProps {
   children: React.ReactNode;
 }
 
@@ -18,9 +26,14 @@ function Layout(props: LayoutProps) {
   return (
     <ThemeProvider theme={dark}>
       <CssBaseline />
-      <Header />
-      {props.children}
-      <Footer />
+      {/* this is used for animating when things enter / exit / move */}
+      <AnimatePresence>
+        {/* using a key attribute is a workaround to avoid getting `Two Children with the Same Key` error */}
+        <Header key={0} />
+        {/* TODO: add padding for size of navbar */}
+        {props.children}
+        <Footer key={2} />
+      </AnimatePresence>
       <ToastContainer theme="colored" />
     </ThemeProvider>
   );

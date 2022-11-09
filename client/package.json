@@ -10,6 +10,8 @@
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.11",
+    "framer-motion": "^7.6.4",
+    "hamburger-react": "^2.5.0",
     "http-proxy-middleware": "^2.0.6",
     "merge": "^2.1.1",
     "oidc-client": "^1.11.5",

@@ -3,7 +3,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 
 // Routing
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 
 // Service Worker / PWA
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
@@ -19,6 +19,7 @@ import { AuthenticationProvider } from "./components/Authentication/Authenticati
 import Home from "./pages/Home";
 import Account from "./pages/Account";
 import Courses from "./pages/Courses";
+import Course from "./pages/Course";
 
 const rootElement = document.getElementById("root") as HTMLElement;
 const root = createRoot(rootElement);
@@ -31,7 +32,12 @@ root.render(
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/account" element={<Account />} />
-            <Route path="/courses" element={<Courses />} />
+            <Route path="/courses" element={<Courses />}></Route>
+            <Route path="/courses/:courseName" element={<Course />} />
+
+            {/* If the route isn't recognised, redirect to home */}
+            {/* TODO: do we want to redirect to a 404 page instead? */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Layout>
       </AuthenticationProvider>

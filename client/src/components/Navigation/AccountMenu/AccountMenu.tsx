@@ -41,6 +41,7 @@ function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
+            {/* TODO: query graph API to get profile pic + name for menu */}
             <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
           </IconButton>
         </Tooltip>
