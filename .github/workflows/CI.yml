@@ -36,7 +36,7 @@ jobs:
       # Install Client Packages
       - name: NPM Install
         run: |
-          npm install --prefix client --omit=dev
+          npm install --prefix client
           
       # Build Client
       - name: Build Client
