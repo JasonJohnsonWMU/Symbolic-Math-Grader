@@ -38,12 +38,19 @@ jobs:
         run: |
           cd server/src
           dotnet restore WMU.Elearning.Server.csproj
+     
+      # Build the Database
+      - name: Build Database
+        run: |
+          cd database
+          dotnet build WMU.Elearning.Database.csproj -c Release
           
       # Build the Server
       - name: Build Server
         run: |
           cd server/src
           dotnet build WMU.Elearning.Server.csproj -c Release
+        
           
      # Run Server Tests
       - name: Server Tests
@@ -55,6 +62,8 @@ jobs:
       - name: NPM Install
         run: |
           npm install --prefix client
+          cd client/src/models
+          ls -la
           
       # Build Client
       - name: Build Client
@@ -71,3 +80,10 @@ jobs:
         run: |
           echo Running Lighthouse Mobile Report
           echo Running Lighthouse Desktop Report
+
+      # Publish Build Artifacts
+      - name: Publish Build Artifacts
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          path: .
+     
