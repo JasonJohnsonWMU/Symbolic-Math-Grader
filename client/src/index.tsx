@@ -20,6 +20,9 @@ import Home from "./pages/Home";
 import Account from "./pages/Account";
 import Courses from "./pages/Courses";
 import Course from "./pages/Course";
+import Inbox from "./pages/Inbox";
+import Dashboard from "./pages/Dashboard";
+import Calendar from "./pages/Calendar";
 
 const rootElement = document.getElementById("root") as HTMLElement;
 const root = createRoot(rootElement);
@@ -32,6 +35,9 @@ root.render(
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/inbox" element={<Inbox />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/calendar" element={<Calendar />} />
             <Route path="/courses" element={<Courses />}></Route>
             <Route path="/courses/:courseName" element={<Course />} />
 
