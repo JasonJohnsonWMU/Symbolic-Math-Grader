@@ -42,8 +42,6 @@ jobs:
       - name: Build Client
         run: |
           ls -la
-          cd client
-          npm run build
           
       # Install Server Packages
       - name: Nuget Restore
