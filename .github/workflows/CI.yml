@@ -62,13 +62,11 @@ jobs:
       - name: NPM Install
         run: |
           npm install --prefix client
-          cd client/src/models
-          ls -la
           
       # Build Client
       - name: Build Client
-        run: |
-          npm run build --prefix client
+        run: | # say CI = false to ignore warnings
+          CI=false npm run build --prefix client
           
       # Run Client Tests
       - name: Client Tests
