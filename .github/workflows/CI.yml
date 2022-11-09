@@ -33,7 +33,24 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.5.1
           
-      # Install Client Packages
+      # Install Server Packages
+      - name: Nuget Restore
+        run: |
+          cd server/src
+          dotnet restore WMU.Elearning.Server.csproj
+          
+      # Build the Server
+      - name: Build Server
+        run: |
+          cd server/src
+          dotnet build WMU.Elearning.Server.csproj -c Release
+          
+     # Run Server Tests
+      - name: Server Tests
+        run: |
+          dotnet test WMU.Elearning.Server.csproj -c Release
+          
+     # Install Client Packages
       - name: NPM Install
         run: |
           npm install --prefix client
@@ -48,24 +65,8 @@ jobs:
         run: |
           npm run test --prefix client
           
-      # Install Server Packages
-      - name: Nuget Restore
-        run: |
-          cd server/src
-          dotnet restore
-          
-      # Build the Server
-      - name: Build Server
-        run: |
-          dotnet build WMU.Elearning.server.csproj -c Release
-          
-     # Run Server Tests
-      - name: Run a multi-line script
-        run: |
-          dotnet test WMU.Elearning.server.csproj -c Release
-          
      # Run Lighthouse Reports
-      - name: Run a multi-line script
+      - name: Lighthouse Reports
         run: |
           echo Running Lighthouse Mobile Report
           echo Running Lighthouse Desktop Report
