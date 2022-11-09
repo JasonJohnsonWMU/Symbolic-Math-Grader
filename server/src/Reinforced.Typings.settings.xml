@@ -106,6 +106,6 @@
 	</ItemGroup>
 	-->
 	<ItemGroup>
-		<RtAdditionalAssembly Include="$(SolutionDir)\database\bin\Debug\net6.0\WMU.Elearning.Database.dll"/>
+		<RtAdditionalAssembly Include="WMU.Elearning.Database.dll"/>
 	</ItemGroup>
 </Project>

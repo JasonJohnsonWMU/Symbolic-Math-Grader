@@ -6,14 +6,14 @@ import { MemoryRouter } from "react-router-dom";
 import CourseCard from "./CourseCard";
 
 // Types
-//import { ICourse } from "../../../models/ICourse";
+import { ICourse } from "../../../models/ICourse";
 
 // Check that the component can render and stay for a second
 it("renders without crashing", async () => {
   const div = document.createElement("div");
   const root = createRoot(div);
 
-  const courseData: any = {
+  const courseData: ICourse = {
     ID: 0,
     Name: "Test",
     Assignments: [],

@@ -16,25 +16,21 @@ const courses: Array<ICourse> = [
     Name: "Test2",
     Assignments: [],
   },
-
   {
     ID: 2,
     Name: "Test3",
     Assignments: [],
   },
-
   {
     ID: 3,
     Name: "Test4",
     Assignments: [],
   },
-
   {
     ID: 4,
     Name: "Test5",
     Assignments: [],
   },
-
   {
     ID: 5,
     Name: "Test6",
