@@ -55,6 +55,7 @@ function TopNavBar(props: TopNavBarProps) {
         {/* TODO: possibly add some x padding here */}
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {/* TODO: Come up with title */}
+          {/* TODO: When someone clicks on name, redirect them home*/}
           Title Here
         </Typography>
         <AuthenticatedTemplate>

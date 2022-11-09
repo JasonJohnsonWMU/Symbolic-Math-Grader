@@ -16,6 +16,8 @@ interface CourseCardProps {
   course: ICourse;
 }
 
+// TODO: store layout arrangement and course colors in local storage
+
 // TODO: remove all placeholders and implement this
 function CourseCard(props: CourseCardProps) {
   let navigate = useNavigate();
@@ -34,6 +36,9 @@ function CourseCard(props: CourseCardProps) {
       layoutId={props.course.Name} // this prop is used for the animation
     >
       <Card>
+        {/* Add a stripe of color to the top of the card for easier recognition. Bar can update with class progress? */}
+        {/* Add a settings button on top right */}
+
         <CardMedia
           component="img"
           height="140"

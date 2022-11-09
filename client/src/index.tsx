@@ -23,6 +23,7 @@ import Course from "./pages/Course";
 import Inbox from "./pages/Inbox";
 import Dashboard from "./pages/Dashboard";
 import Calendar from "./pages/Calendar";
+import NotFound from "./pages/NotFound";
 
 const rootElement = document.getElementById("root") as HTMLElement;
 const root = createRoot(rootElement);
@@ -43,7 +44,7 @@ root.render(
 
             {/* If the route isn't recognised, redirect to home */}
             {/* TODO: do we want to redirect to a 404 page instead? */}
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
       </AuthenticationProvider>
