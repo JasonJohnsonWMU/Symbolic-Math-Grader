@@ -1,0 +1,71 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "development" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Install .NET Core Runtime
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+
+      # Install Node and NPM
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.5.1
+          
+      # Install Client Packages
+      - name: NPM Install
+        run: |
+          npm install --prefix client --omit=dev
+          
+      # Build Client
+      - name: Build Client
+        run: |
+          npm run build --prefix client
+          
+      # Run Client Tests
+      - name: Client Tests
+        run: |
+          npm run test --prefix client
+          
+      # Install Server Packages
+      - name: Nuget Restore
+        run: |
+          cd server/src
+          dotnet restore
+          
+      # Build the Server
+      - name: Build Server
+        run: |
+          dotnet build WMU.Elearning.server.csproj -c Release
+          
+     # Run Server Tests
+      - name: Run a multi-line script
+        run: |
+          dotnet test WMU.Elearning.server.csproj -c Release
+          
+     # Run Lighthouse Reports
+      - name: Run a multi-line script
+        run: |
+          echo Running Lighthouse Mobile Report
+          echo Running Lighthouse Desktop Report
