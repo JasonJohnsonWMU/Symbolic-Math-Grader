@@ -36,12 +36,18 @@ jobs:
       # Install Client Packages
       - name: NPM Install
         run: |
+          cd client
           npm install
           
       # Build Client
       - name: Build Client
         run: |
-          ls -la
+          npm run build
+          
+      # Run Client Tests
+      - name: Client Tests
+        run: |
+          npm run test
           
       # Install Server Packages
       - name: Nuget Restore
@@ -58,11 +64,6 @@ jobs:
       - name: Run a multi-line script
         run: |
           dotnet test WMU.Elearning.server.csproj -c Release
-          
-     # Run Client Tests
-      - name: Client Tests
-        run: |
-          npm run test
           
      # Run Lighthouse Reports
       - name: Run a multi-line script
