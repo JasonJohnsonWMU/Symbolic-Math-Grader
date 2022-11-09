@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using WMU.Elearning.Database.Data;
 
@@ -51,7 +52,7 @@ namespace WMU.Elearning.Server
 #else
             app.UseExceptionHandler("/Error");
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            app.UseHsts();           
+            app.UseHsts();
 #endif
             // Redirect all HTTP traffic to HTTPS if our webserver didn't already
             app.UseHttpsRedirection();
