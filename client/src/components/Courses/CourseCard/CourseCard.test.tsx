@@ -1,7 +1,12 @@
-import React from "react";
+// React
 import { createRoot } from "react-dom/client";
 import { MemoryRouter } from "react-router-dom";
+
+// UI Components
 import CourseCard from "./CourseCard";
+
+// Types
+import { ICourse } from "../../../models/ICourse";
 
 // Check that the component can render and stay for a second
 it("renders without crashing", async () => {
