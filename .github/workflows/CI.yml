@@ -36,20 +36,17 @@ jobs:
       # Install Client Packages
       - name: NPM Install
         run: |
-          cd client
-          npm install
+          npm install --prefix client --omit=dev
           
       # Build Client
       - name: Build Client
         run: |
-          cd client
-          npm run build
+          npm run build --prefix client
           
       # Run Client Tests
       - name: Client Tests
         run: |
-          cd client
-          npm run test
+          npm run test --prefix client
           
       # Install Server Packages
       - name: Nuget Restore
