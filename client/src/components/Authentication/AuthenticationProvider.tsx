@@ -26,11 +26,7 @@ export interface AuthenticationProviderProps {
 }
 
 function AuthenticationProvider(props: AuthenticationProviderProps) {
-  return (
-    <MsalProvider instance={msalInstance}>
-      <div>{props.children}</div>
-    </MsalProvider>
-  );
+  return <MsalProvider instance={msalInstance}>{props.children}</MsalProvider>;
 }
 
 function useAuthentication() {
@@ -49,7 +45,7 @@ function useAuthentication() {
     // if (accounts.length > 0) {
     //     msalInstance.setActiveAccount(accounts[0]);
     // }
-    // is this wanted? we might want a switch view for teachers instead, almost all users will only have one account
+    // TODO: is this wanted? we might want a switch view for teachers instead, almost all users will only have one account
   };
   return { login, logout, switchAccounts };
 }
