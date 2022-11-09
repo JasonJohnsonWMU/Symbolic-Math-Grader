@@ -24,35 +24,44 @@ jobs:
       - uses: actions/checkout@v3
 
       # Install .NET Core Runtime
-      - name: Run a multi-line script
-        run: |
-          echo Installing .NET Core
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
 
       # Install Node and NPM
-      - name: Run a multi-line script
-        run: |
-          echo Installing Node
-          echo Installing NPM
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.5.1
           
-      # Build the Client
-      - name: Run a multi-line script
+      # Install Client Packages
+      - name: NPM Install
         run: |
-          echo Building Client
+          npm install
+          
+      # Build Client
+      - name: Build Client
+        run: |
+          npm run build
+          
+      # Install Server Packages
+      - name: Nuget Restore
+        run: |
+          dotnet restore
           
       # Build the Server
-      - name: Run a multi-line script
+      - name: Build Server
         run: |
-          echo Building Server
+          dotnet build WMU.Elearning.server.csproj -c Release
           
      # Run Server Tests
       - name: Run a multi-line script
         run: |
-          echo Running Server Tests
+          dotnet test WMU.Elearning.server.csproj -c Release
           
      # Run Client Tests
-      - name: Run a multi-line script
+      - name: Client Tests
         run: |
-          echo Running Client Tests
+          npm run test
           
      # Run Lighthouse Reports
       - name: Run a multi-line script
