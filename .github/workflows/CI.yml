@@ -55,6 +55,8 @@ jobs:
       - name: NPM Install
         run: |
           npm install --prefix client
+          cd client/src/models
+          ls -la
           
       # Build Client
       - name: Build Client
