@@ -42,11 +42,13 @@ jobs:
       # Build Client
       - name: Build Client
         run: |
+          cd client
           npm run build
           
       # Run Client Tests
       - name: Client Tests
         run: |
+          cd client
           npm run test
           
       # Install Server Packages
