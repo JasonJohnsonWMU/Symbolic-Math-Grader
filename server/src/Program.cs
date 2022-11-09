@@ -1,4 +1,12 @@
+using Reinforced.Typings.Attributes;
 using WMU.Elearning.Database.Data;
+
+// set up default reinforced typings behavior
+[assembly: TsGlobal(
+    UseModules = true,
+    DiscardNamespacesWhenUsingModules = true,
+    ExportPureTypings = true
+)]
 
 namespace WMU.Elearning.Server
 {
@@ -38,6 +46,7 @@ namespace WMU.Elearning.Server
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+
                 });
     }
 }

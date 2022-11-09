@@ -1,6 +1,9 @@
 // UI Components
 import CourseCard from "../components/Courses/CourseCard/CourseCard";
 
+// Types
+import { ICourse } from "../models/ICourse";
+
 // TODO: fetch this from the API instead of hardcoding it
 const courses: Array<ICourse> = [
   {

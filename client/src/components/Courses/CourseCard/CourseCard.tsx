@@ -12,6 +12,9 @@ import { motion } from "framer-motion";
 // Routing
 import { useNavigate } from "react-router-dom";
 
+// Types
+import { ICourse } from "../../../models/ICourse";
+
 interface CourseCardProps {
   course: ICourse;
 }
