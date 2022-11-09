@@ -41,6 +41,7 @@ jobs:
       # Build Client
       - name: Build Client
         run: |
+          ls -la
           cd client
           npm run build
           
