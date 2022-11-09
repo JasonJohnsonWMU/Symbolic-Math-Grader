@@ -48,7 +48,8 @@ jobs:
      # Run Server Tests
       - name: Server Tests
         run: |
-          dotnet test WMU.Elearning.Server.csproj -c Release
+          cd server/src
+          dotnet test
           
      # Install Client Packages
       - name: NPM Install
