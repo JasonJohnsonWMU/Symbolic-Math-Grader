@@ -41,11 +41,13 @@ jobs:
       # Build Client
       - name: Build Client
         run: |
+          cd client
           npm run build
           
       # Install Server Packages
       - name: Nuget Restore
         run: |
+          cd server/src
           dotnet restore
           
       # Build the Server
